@@ -1,0 +1,7 @@
+CREATE TABLE Tasks (
+	id UUID PRIMARY KEY IDENTITY(1,1),
+	title NVARCHAR(200) NOT NULL,
+	description TEXT,
+	status NVARCHAR(100) NOT NULL,
+	date_create DATE
+)
