@@ -38,12 +38,16 @@ public class TaskService  implements TaskServiceI{
 
     @Override
     public TaskResponseDTO register(TaskRequestDTO taskDTO) {
-            TaskEntity task = new TaskEntity();
-            task.setTitle(taskDTO.getTitle());
-            task.setDescription(taskDTO.getDescription());
-            task.setStatus(taskDTO.getStatus());
+        if (taskDTO.getTitle() == null || taskDTO.getTitle().trim().isEmpty()) {
+            throw new IllegalArgumentException("Titulo é obrigatório");
+        }
 
-            return new TaskResponseDTO(repository.save(task));
+        TaskEntity task = new TaskEntity();
+        task.setTitle(taskDTO.getTitle());
+        task.setDescription(taskDTO.getDescription());
+        task.setStatus(taskDTO.getStatus());
+
+        return new TaskResponseDTO(repository.save(task));
     }
 
     @Override
